@@ -2,15 +2,15 @@ package Entidades;
 
 public class Estoque {
     private  int id;
-    private  Produto produto;
-    private  Filial filial;
+    private int produto;
+    private int filial;
     private  int  quantidade;
 
-    public Estoque(int id, Produto produto, int quantidade, Filial filial) {
+    public Estoque(int id, int produtoid, int quantidade, int filialid) {
         this.id = id;
-        this.produto = produto;
+        this.produto = produtoid;
         this.quantidade = quantidade;
-        this.filial = filial;
+        this.filial = filialid;
     }
 
     public int getId() {
@@ -18,20 +18,20 @@ public class Estoque {
     }
 
 
-    public Produto getProduto() {
+    public int getProduto() {
         return produto;
     }
 
     public void setProduto(Produto produto) {
-        this.produto = produto;
+        this.produto = produto.getId();
     }
 
-    public Filial getFilial() {
+    public int getFilial() {
         return filial;
     }
 
     public void setFilial(Filial filial) {
-        this.filial = filial;
+        this.filial = filial.getId();
     }
 
     public int getQuantidade() {

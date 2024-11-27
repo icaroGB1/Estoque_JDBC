@@ -12,12 +12,11 @@ import java.time.LocalDateTime;
 
 public class movimentacaoEstoqueRepository {
 
+    EstoqueRepository estoqueRepository =  new EstoqueRepository();
     public  void entrada(movimentacaoEstoque movi){
         String sql = "insert into movimentacao_estoque(id_produto, id_filial, quantidade, tipo, data_movimentacao, referencia) values(?, ?, ?, ?, ?, ?)";
-        String sql2 = "insert into estoque(id_produto, id_filial, quantidade) values(?, ?,?)";
         try (Connection conn = DB.getConnection();
-             PreparedStatement entrada = conn.prepareStatement(sql);
-             PreparedStatement entradaEstoque = conn.prepareStatement(sql2);){
+             PreparedStatement entrada = conn.prepareStatement(sql);){
             conn.setAutoCommit(false);
             entrada.setInt(1, movi.getProduto());
             entrada.setInt(2, movi.getFilial());
@@ -26,12 +25,13 @@ public class movimentacaoEstoqueRepository {
             entrada.setDate(5, Date.valueOf(LocalDate.now()));
             entrada.setString(6, movi.getReferencia());
             entrada.executeUpdate();
-
-            entradaEstoque.setInt(1, movi.getProduto());
-            entradaEstoque.setInt(2, movi.getFilial());
-            entradaEstoque.setInt(3,movi.getQuantidade());
-            entradaEstoque.executeUpdate();
-            conn.commit();
+            if(estoqueRepository.produtoExists(movi.getProduto(), movi.getFilial())){
+                estoqueRepository.update(movi.getQuantidade(), movi.getProduto(), movi.getFilial());
+                conn.commit();
+            }else {
+                estoqueRepository.entrada(movi.getProduto(), movi.getFilial(), movi.getQuantidade());
+                conn.commit();
+            }
 
         }catch (SQLException e ) {
             e.printStackTrace();

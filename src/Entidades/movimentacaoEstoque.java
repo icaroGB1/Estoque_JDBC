@@ -21,8 +21,7 @@ public class movimentacaoEstoque {
 //        this.data_movimentacao = data_movimentacao;
 //        this.referencia = referencia;
 //    }
-    public movimentacaoEstoque(int id, int produtoid, int quantidade, int filial, String tipo, String referencia) {
-        this.id = id;
+    public movimentacaoEstoque(int produtoid, int quantidade, int filial, String tipo, String referencia) {
         this.produto = produtoid;
         this.quantidade = quantidade;
         this.filial = filial;
