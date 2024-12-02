@@ -1,5 +1,7 @@
 package Entidades;
 
+import Enums.Tipo;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -8,7 +10,7 @@ public class movimentacaoEstoque {
     private int produto;
     private int filial;
     private  int quantidade;
-    private  String tipo;
+    private Tipo tipo;
     private LocalDate data_movimentacao;
     private  String referencia;
 
@@ -21,7 +23,7 @@ public class movimentacaoEstoque {
 //        this.data_movimentacao = data_movimentacao;
 //        this.referencia = referencia;
 //    }
-    public movimentacaoEstoque(int produtoid, int quantidade, int filial, String tipo, String referencia) {
+    public movimentacaoEstoque(int produtoid, int quantidade, int filial, Tipo tipo, String referencia) {
         this.produto = produtoid;
         this.quantidade = quantidade;
         this.filial = filial;
@@ -58,11 +60,11 @@ public class movimentacaoEstoque {
         this.quantidade = quantidade;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

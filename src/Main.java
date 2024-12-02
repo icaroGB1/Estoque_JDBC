@@ -1,21 +1,13 @@
-import Entidades.Filial;
-import Entidades.Produto;
 import Entidades.movimentacaoEstoque;
+import Enums.Tipo;
 import repository.EstoqueRepository;
-import repository.FilialRepository;
-import repository.ProdutoRepository;
-import repository.movimentacaoEstoqueRepository;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import repository.MovimentacaoEstoqueRepository;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        movimentacaoEstoqueRepository repository = new movimentacaoEstoqueRepository();
+        MovimentacaoEstoqueRepository repository = new MovimentacaoEstoqueRepository();
         EstoqueRepository repository1 = new EstoqueRepository();
-        movimentacaoEstoque mov = new movimentacaoEstoque(2,50,2, "entre",  "nota");
-        repository.entrada(mov);
+        repository.cancelarMovi(14);
     }
 }
